@@ -23,3 +23,7 @@ go.work.sum
 
 # env file
 .env
+
+# demo assets generation
+*.mkv
+*/palette.png
