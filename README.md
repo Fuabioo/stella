@@ -1,17 +1,39 @@
 # stella
-TUI progress bar
 
 <img src="assets/demo.gif">
 
-```sh
-go run . http://0.0.0.0:10301/progress
-```
+**TUI progress bar ⏱️**
+
+The process you want to monitor just needs to expose an HTTP
+endpoint returning the specified JSON and *voilà* 💅🏻✨
+
+## Installation
+
+TODO
+
+## Usage
+
+Run the demo process:
 
 ```sh
-tail -f /tmp/progresser/2025-05-29.log
+go run pkg/demo/demo.go
+```
+
+Run `stella` as a demo client consumer.
+
+> The url is the only configuration possible right now
+
+```sh
+stella http://0.0.0.0:10301/progress
+```
+
+Logs are sent to an ephemeral logfile set to `/tmp` so the OS can clean it up.
+
+```sh
+tail -f /tmp/stella/2025-05-29.log
 ```
 
 ## TODO
 
-- [ ] Implement CLI
+- [ ] Implement CLI + configuration
 - [ ] Add a documentation page
