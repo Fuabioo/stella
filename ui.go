@@ -23,13 +23,14 @@ var helpStyle = lipgloss.NewStyle().Foreground(lipgloss.Color("#626262")).Render
 type tickMsg time.Time
 
 type model struct {
-	width     int
-	height    int
-	quitting  time.Time
-	data      *state
-	stopwatch stopwatch.Model
-	spinner   spinner.Model
-	progress  progress.Model
+	width       int
+	height      int
+	quitting    time.Time
+	logFileName string
+	data        *state
+	stopwatch   stopwatch.Model
+	spinner     spinner.Model
+	progress    progress.Model
 }
 
 func newModel(data *state) *model {
@@ -37,11 +38,12 @@ func newModel(data *state) *model {
 	s.Spinner = spinner.Dot
 	s.Style = lipgloss.NewStyle().Foreground(lipgloss.Color("205"))
 	return &model{
-		width:     80, // default width, will be updated on resize
-		data:      data,
-		stopwatch: stopwatch.NewWithInterval(time.Millisecond),
-		spinner:   s,
-		progress:  progress.New(progress.WithDefaultGradient()),
+		width:       80, // default width, will be updated on resize
+		data:        data,
+		logFileName: logFile.Name(),
+		stopwatch:   stopwatch.NewWithInterval(time.Millisecond),
+		spinner:     s,
+		progress:    progress.New(progress.WithDefaultGradient()),
 	}
 }
 
@@ -134,7 +136,7 @@ func (m *model) View() string {
 		pad + m.progress.View(),
 		fmt.Sprintln(),
 		pad + elapsed,
-		pad + helpStyle("Press any key to quit"),
+		pad + helpStyle(fmt.Sprintf("Press any key to quit, logs can be found at %s", m.logFileName)),
 		fmt.Sprintln(),
 	}, fmt.Sprintln()))
 }
