@@ -27,3 +27,5 @@ go.work.sum
 # demo assets generation
 *.mkv
 */palette.png
+# Added by goreleaser init:
+dist/
