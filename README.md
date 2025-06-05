@@ -9,7 +9,21 @@ endpoint returning the specified JSON and *voilà* 💅🏻✨
 
 ## Installation
 
-TODO
+### Precompiled binaries
+
+Download a precompiled binary from [the releases](https://github.com/Fuabioo/stella/releases) 
+
+### APT on linux
+
+```bash
+echo -e 'Package: stella\nPin: origin "apt.fuabioo.com"\nPin-Priority: 1001' | sudo tee /etc/apt/preferences.d/stella.pref > /dev/null
+apt-cache policy stella
+```
+
+```bash
+sudo apt update
+sudo apt install stella
+```
 
 ## Usage
 
